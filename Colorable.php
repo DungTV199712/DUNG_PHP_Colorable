@@ -1,26 +1,28 @@
 <?php
-interface ColorAble
+interface Colorable
 {
     function howToColor();
 }
-class Square implements ColorAble
-{
-    private $height;
-    public function __construct($height)
-    {
-        $this->height = $height;
-    }
 
-    public function getArea()
-    {
-        return $this->height * $this->height;
-    }
+class Square implements Colorable
+{
     function howToColor()
     {
-        echo 'color all four side';
-        // TODO: Implement howToColor() method.
+        echo "Color all four sides" . PHP_EOL;
     }
 }
-$square = new Square(5);
-echo  'Area of Square : ' . $square->getArea() . '<br>';
-$square->howToColor();
+
+class Rectangle
+{
+
+}
+
+$square = new Square();
+$square2 = new Square();
+$rectangle = new Rectangle();
+$shapes = [$square, $square2, $rectangle];
+foreach ($shapes as $shape) {
+    if ($shape instanceof Colorable) {
+        $shape->howToColor();
+    }
+}
